@@ -1,0 +1,21 @@
+{% extends 'mqalat/base.html' %}
+{% load static %}
+{% block title %}الرئيسية - Maqalat{% endblock %}
+{% block content %}
+<h2>أحدث المقالات</h2>
+<div class="articles">
+{% for article in articles %}
+<div class="article-card">
+{% if article.image %}<img src="{{ article.image.url }}" alt="{{ article.title }}">{% endif %}
+<h3>{{ article.title }}</h3>
+<p>{{ article.content|truncatewords:30 }}</p>
+<a href="{% url 'article_detail' article.id %}">اقرأ المزيد</a>
+</div>
+{% empty %}<p>لا توجد مقالات حالياً.</p>{% endfor %}
+</div>
+<div class="pagination">
+{% if articles.has_previous %}<a href="?page={{ articles.previous_page_number }}">السابق</a>{% endif %}
+<span>صفحة {{ articles.number }} من {{ articles.paginator.num_pages }}</span>
+{% if articles.has_next %}<a href="?page={{ articles.next_page_number }}">التالي</a>{% endif %}
+</div>
+{% endblock %}

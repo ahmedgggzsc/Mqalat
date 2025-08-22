@@ -1,0 +1,15 @@
+{% extends 'mqalat/base.html' %}
+{% block title %}{{ category.name }} - Maqalat{% endblock %}
+{% block content %}
+<h2>مقالات التصنيف: {{ category.name }}</h2>
+<div class="articles">
+{% for article in articles %}
+<div class="article-card">
+{% if article.image %}<img src="{{ article.image.url }}" alt="{{ article.title }}">{% endif %}
+<h3>{{ article.title }}</h3>
+<p>{{ article.content|truncatewords:30 }}</p>
+<a href="{% url 'article_detail' article.id %}">اقرأ المزيد</a>
+</div>
+{% empty %}<p>لا توجد مقالات في هذا التصنيف.</p>{% endfor %}
+</div>
+{% endblock %}

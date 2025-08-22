@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>{% block title %}Maqalat{% endblock %}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'mqalat/css/style.css' %}">
+</head>
+<body>
+<header>
+<div class="container">
+<h1><a href="{% url 'home' %}">Maqalat</a></h1>
+<nav>
+<a href="{% url 'home' %}">الرئيسية</a> |
+<a href="{% url 'about' %}">عن الموقع</a>
+</nav>
+<form method="get" action="{% url 'search_articles' %}" class="search-form">
+<input type="text" name="q" placeholder="ابحث عن مقال..." value="{{ request.GET.q }}">
+<button type="submit">بحث</button>
+</form>
+</div>
+</header>
+<main><div class="container">{% block content %}{% endblock %}</div></main>
+<footer><div class="container"><p>&copy; 2025 Maqalat. كل الحقوق محفوظة.</p></div></footer>
+</body>
+</html>

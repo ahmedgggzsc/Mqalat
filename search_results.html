@@ -1,0 +1,15 @@
+{% extends 'mqalat/base.html' %}
+{% block title %}نتائج البحث - Maqalat{% endblock %}
+{% block content %}
+<h2>نتائج البحث عن: "{{ query }}"</h2>
+<div class="articles">
+{% for article in articles %}
+<div class="article-card">
+{% if article.image %}<img src="{{ article.image.url }}" alt="{{ article.title }}">{% endif %}
+<h3>{{ article.title }}</h3>
+<p>{{ article.content|truncatewords:30 }}</p>
+<a href="{% url 'article_detail' article.id %}">اقرأ المزيد</a>
+</div>
+{% empty %}<p>لا توجد نتائج.</p>{% endfor %}
+</div>
+{% endblock %}

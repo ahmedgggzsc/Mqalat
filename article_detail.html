@@ -1,0 +1,12 @@
+{% extends 'mqalat/base.html' %}
+{% block title %}{{ article.title }} - Maqalat{% endblock %}
+{% block content %}
+<article>
+<h2>{{ article.title }}</h2>
+{% if article.image %}<img src="{{ article.image.url }}" alt="{{ article.title }}">{% endif %}
+<p>{{ article.content }}</p>
+<p><strong>التصنيف:</strong> {{ article.category.name }}</p>
+<p><strong>عدد المشاهدات:</strong> {{ article.views_count }}</p>
+<a href="{% url 'home' %}">العودة للرئيسية</a>
+</article>
+{% endblock %}
